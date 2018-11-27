@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import { SplashPage } from './../pages/splash/splash';
-=======
->>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-<<<<<<< HEAD
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 
 import { MyApp } from './app.component';
@@ -20,17 +16,6 @@ import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
     MyApp,
     HomePage,
     SplashPage
-=======
-
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { DataProvider } from '../providers/data/data';
-
-@NgModule({
-  declarations: [
-    MyApp,
-    HomePage
->>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39
   ],
   imports: [
     BrowserModule,
@@ -39,17 +24,12 @@ import { DataProvider } from '../providers/data/data';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-<<<<<<< HEAD
     HomePage,
     SplashPage
-=======
-    HomePage
->>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39
   ],
   providers: [
     StatusBar,
     SplashScreen,
-<<<<<<< HEAD
     BluetoothSerial,
     MessageController,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -57,10 +37,5 @@ import { DataProvider } from '../providers/data/data';
     BluetoothProvider
   ]
   
-=======
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
-  ]
->>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39
 })
 export class AppModule {}
