@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import { BluetoothProvider } from './../../providers/bluetooth/bluetooth';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { MessageController } from '../../utils/messageCtrl';
+=======
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+>>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39
 
 @Component({
   selector: 'page-home',
@@ -11,6 +16,7 @@ import { MessageController } from '../../utils/messageCtrl';
 })
 export class HomePage {
 
+<<<<<<< HEAD
 
   command: String;
   listToggle: boolean = false;
@@ -160,3 +166,10 @@ interface PairedList {
   class: number,
 }
 
+=======
+  constructor(public navCtrl: NavController) {
+
+  }
+
+}
+>>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39

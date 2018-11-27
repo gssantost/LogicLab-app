@@ -1,7 +1,17 @@
 {
+<<<<<<< HEAD
   "name": "bluetooth-json",
   "integrations": {
     "cordova": {}
   },
   "type": "ionic-angular"
 }
+=======
+  "name": "mobile-IC-tester-app",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
+>>>>>>> 939d2bb4e8a94eebfb90543e33ab76e6bddede39
