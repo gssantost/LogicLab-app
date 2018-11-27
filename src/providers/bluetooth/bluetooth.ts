@@ -1,47 +1,19 @@
-import { BluetoothProvider } from './../../providers/bluetooth/bluetooth';
-import { OpenNativeSettings } from '@ionic-native/open-native-settings';
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+
+import { Injectable } from '@angular/core';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { MessageController } from '../../utils/messageCtrl';
-
-@Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
-})
-export class HomePage {
-
+@Injectable()
+export class BluetoothProvider {
 
   command: String;
   listToggle: boolean = false;
   pairedDeviceId: number = 0;
   pairedList: PairedList;
 
-  constructor(public navCtrl: NavController, public msg: MessageController, public bluetoothSerial: BluetoothSerial,
-              private openNativeSettings: OpenNativeSettings, private bluetoothProvider: BluetoothProvider) {
-                this.bluetoothProvider.checkBluetoothEnabled();
-                this.command = '';
-               }
-    
-  
-                listPairedDevices(){
-                  this.bluetoothProvider.listPairedDevices();
-                }
-
-                selectDevice(){
-                  this.bluetoothProvider.selectDevice();
-                }
-                /*
-                send(){
-                   this.bluetoothProvider.send();
-                }
-                */
-
-  /*              
-    this.command = '';
-    this.checkBluetoothEnabled();
+  constructor( public bluetoothSerial: BluetoothSerial,  public msg: MessageController) {
+    //this.command = '';
+   //this.checkBluetoothEnabled();
   }
-
   checkBluetoothEnabled() {
     this.bluetoothSerial.isEnabled()
       .then(success => {
@@ -53,7 +25,6 @@ export class HomePage {
         this.msg.show("Error", "Please enable Bluetooth.")
       });
   }
-
   listPairedDevices() {
     this.bluetoothSerial.list()
       .then((success) => {
@@ -66,7 +37,6 @@ export class HomePage {
         this.msg.show("Error", "Please enable Bluetooth.")
       })
   }
-
   selectDevice() {
     let connectedDevice = this.pairedList[this.pairedDeviceId]; {
       if (!connectedDevice.address) {
@@ -112,7 +82,6 @@ export class HomePage {
         this.msg.show("Error", error)
       })
   }
-*/
   send() {
     /*
     let data = [{
@@ -127,7 +96,7 @@ export class HomePage {
     ];*/
     
     //this.command = JSON.stringify(data[0]["74LS04"]);
-    
+   
     this.command += '\n'
     
     this.msg.show("DataToSend", this.command)
@@ -142,15 +111,6 @@ export class HomePage {
 
     this.bluetoothSerial.clear();
   }
-
-  open(setting: string){
-      this.openNativeSettings.open(setting).then(val => {
-        alert(setting);
-      }).catch(err=>{
-        alert(JSON.stringify(err))
-      })
-  }
-
 }
 
 interface PairedList {
@@ -159,4 +119,3 @@ interface PairedList {
   name: string,
   class: number,
 }
-
