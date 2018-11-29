@@ -7,9 +7,7 @@ page-splash {
           height: 100%;
                   }
 
-        .fondo{
-            background-image: url('/assets/imgs/fondo.png');
-        }
+
         
         .view {
             background-color: #222;
@@ -29,8 +27,8 @@ page-splash {
                   transform-style: preserve-3d;
         }
         .plane.main {
-          position: absolute;
-          top: 0;
+            position: absolute;
+            top: -80px;
           left: 0;
           right: 0;
           bottom: 0;
@@ -135,7 +133,7 @@ page-splash {
               height: 40px;
               padding: 0 40px;
               position: absolute;
-              bottom: 170px;
+              bottom: 198px;
               left: 35px;
           
               &:before {
@@ -253,7 +251,7 @@ page-splash {
             position: absolute;
             bottom: inherit;
             left: 130px;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
           }
 
           * {
@@ -262,10 +260,11 @@ page-splash {
         
 
           .logo {
-            font-family: "Lato", Arial, sans-serif;
-            font-size: calc(1em + 12vw);
+            font-family: 'Lato', sans-serif;
+            //font-family: "Lato", Arial, sans-serif;
+            font-size: calc(1em + 7vw);
             letter-spacing: 0.08em;
-            color: #eee;
+            color:#32db64;
             text-transform: uppercase;
             white-space: nowrap;
             user-select: none;
@@ -273,7 +272,13 @@ page-splash {
           }          
           
           
-          
+          .lol{
+              background-image: url('assets/imgs/logo.png');
+              background-repeat:no-repeat;
+              background-size:contain;
+              height:200px;
+              width:1200px;
+          }
           
         }
         

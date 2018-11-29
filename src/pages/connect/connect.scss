@@ -1,0 +1,160 @@
+page-connect {
+
+        .content-md{
+            color: #222;
+            background-color: #222;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #050505;
+            overflow: hidden;
+        }
+
+        .linea{
+            border: solid;
+            background-color: #222;
+            height: 12vh;
+            border-top-color:  #32db64;
+            border-bottom-color:#32db64;
+            border-left-color: #222;
+            border-right-color: #222;
+            
+        
+        }
+
+        .boton{
+            @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+           
+          
+           margin-bottom: 60px;
+
+          }
+
+        .next{
+            height: 80vh;
+            color: #16a085;
+            border: solid;
+           // top: 30px;
+            position: relative;
+            border: solid;
+            border-radius: 20px;
+            background-color: #222;
+        }
+        
+        .logo {
+            font-family: 'Lato', sans-serif;
+            font-size: 30px;
+            font-size: calc(1em + 6vw);
+            letter-spacing: 0.08em;
+            color: #eee;
+            text-transform: uppercase;
+            white-space: nowrap;
+            user-select: none;
+            align-self: center;
+            padding: 32px;
+            
+        //   position: absolute;
+          //  left: 68px;
+            //top: 50px;
+        }
+
+        /* Cuboid Positioning */
+        
+        .cuboid,
+        .cuboid-face {
+            display: inline-block;
+        }
+        
+        .cuboid {
+            font-size: 0.75em;
+            position: relative;
+            height: 0.5em;
+            width: 1em;
+            vertical-align: middle;
+            transform-style: preserve-3d;
+            transform: rotateX(-40deg) rotateY(-45deg);
+            animation: rotateCuboid 3s ease-in-out infinite;
+        }
+        
+        .cuboid-face {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: 0.08em solid rgb(6, 95, 43);
+        }
+        
+        .cuboid-face-top,
+        .cuboid-face-bottom {
+            height: 1em;
+        }
+        
+        .cuboid-face-front {
+            transform: translateZ(0.5em);
+            animation: faceFront 3s ease-in-out infinite;
+        }
+        
+        .cuboid-face-back {
+            transform: rotateY(180deg) translateZ(0.5em);
+            animation: faceBack 3s ease-in-out infinite;
+        }
+        
+        .cuboid-face-left {
+            transform: rotateY(-90deg) translateZ(0.5em);
+            animation: faceLeft 3s ease-in-out infinite;
+        }
+        
+        .cuboid-face-right {
+            transform: rotateY(90deg) translateZ(0.5em);
+            animation: faceRight 3s ease-in-out infinite;
+        }
+        
+        .cuboid-face-top {
+            transform: rotateX(90deg) translateZ(0.5em);
+        }
+        
+        .cuboid-face-bottom {
+            transform: rotateX(-90deg);
+        }
+        
+        /* Animations */
+        
+        @keyframes faceFront {
+            50% {
+                transform: translateZ(0.7em);
+            }
+        }
+        
+        @keyframes faceBack {
+            50% {
+                transform: rotateY(180deg) translateZ(0.7em);
+            }
+        }
+        
+        @keyframes faceLeft {
+            50% {
+                transform: rotateY(-90deg) translateZ(0.7em);
+            }
+        }
+        
+        @keyframes faceRight {
+            50% {
+                transform: rotateY(90deg) translateZ(0.7em);
+            }
+        }
+        
+        @keyframes rotateCuboid {
+            100% {
+                transform: rotateX(-40deg) rotateY(-405deg);
+            }
+        }
+        
+        
+}

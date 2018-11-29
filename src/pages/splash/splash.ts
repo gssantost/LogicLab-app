@@ -1,3 +1,4 @@
+import { ConnectPage } from './../connect/connect';
 import { HomePage } from './../home/home';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Component } from '@angular/core';
@@ -17,13 +18,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class SplashPage {
 
+
   constructor(public viewCtrl: ViewController, public splashScreen: SplashScreen, public navCtrl: NavController) {
  
   }
- //ionViewWillEnter()
-  ngOnInit() {
+
  
-   
- 
+  home(){
+    this.navCtrl.setRoot(ConnectPage)
   }
 }

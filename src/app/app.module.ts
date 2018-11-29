@@ -1,3 +1,4 @@
+import { ConnectPage } from './../pages/connect/connect';
 import { SplashPage } from './../pages/splash/splash';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -11,11 +12,13 @@ import { HomePage } from '../pages/home/home';
 import { MessageController } from '../utils/messageCtrl';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    SplashPage
+    SplashPage,
+    ConnectPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
   entryComponents: [
     MyApp,
     HomePage,
-    SplashPage
+    SplashPage,
+    ConnectPage
   ],
   providers: [
     StatusBar,

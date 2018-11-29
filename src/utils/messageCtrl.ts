@@ -16,6 +16,7 @@ export class MessageController {
     let alert = this.alertCtrl.create({
       title: title,
       subTitle: text,
+      cssClass:'alert-danger',
       buttons: [
         {
           text: 'OK',

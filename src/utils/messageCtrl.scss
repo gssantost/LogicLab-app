@@ -1,0 +1,27 @@
+ion-alert {
+    border-radius: 15px;
+    &.alert-warning {
+      .alert-head {
+        background: map-get($colors, warning);
+        color: #fff;
+        margin-bottom: 10px;
+      }
+    }
+    &.alert-danger {
+        .alert-head{
+        background: #222;
+        color: #fff;
+        margin-bottom: 10px;
+        border: solid;
+        border-radius: 15px;
+        }
+    }
+    &.alert-success {
+      .alert-head {
+        background: map-get($colors, success);
+        color: #fff;
+        margin-bottom: 10px;
+      }
+    }
+  
+  }
