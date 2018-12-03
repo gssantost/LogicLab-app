@@ -1,19 +1,22 @@
 
 import { Injectable } from '@angular/core';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
-import { MessageController } from '../../utils/messageCtrl';
+import { MessageController } from '../../utils/messageCtrl/messageCtrl';
+import { PairedList } from '../../utils/interfaces/pairedList';
+
 @Injectable()
 export class BluetoothProvider {
 
   command: String;
-  listToggle: boolean = false;
+  //listToggle: boolean = false;
   pairedDeviceId: number = 0;
   pairedList: PairedList;
 
   constructor( public bluetoothSerial: BluetoothSerial,  public msg: MessageController) {
     //this.command = '';
-   //this.checkBluetoothEnabled();
+    //this.checkBluetoothEnabled();
   }
+
   checkBluetoothEnabled() {
     this.bluetoothSerial.isEnabled()
       .then(success => {
@@ -25,18 +28,24 @@ export class BluetoothProvider {
         this.msg.show("Error", "Please enable Bluetooth.")
       });
   }
+  
   listPairedDevices() {
     this.bluetoothSerial.list()
       .then((success) => {
         console.log(JSON.stringify(success))
         this.pairedList = success
-        this.listToggle = true
+        // this.listToggle = true
       })
       .catch(error => {
         console.log(error)
         this.msg.show("Error", "Please enable Bluetooth.")
       })
   }
+
+  getPairedDevices(): PairedList {
+    return this.pairedList;
+  }
+  
   selectDevice() {
     let connectedDevice = this.pairedList[this.pairedDeviceId]; {
       if (!connectedDevice.address) {
@@ -111,11 +120,4 @@ export class BluetoothProvider {
 
     this.bluetoothSerial.clear();
   }
-}
-
-interface PairedList {
-  id: string,
-  address: string,
-  name: string,
-  class: number,
 }

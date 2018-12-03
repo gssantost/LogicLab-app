@@ -3,7 +3,7 @@ import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
-import { MessageController } from '../../utils/messageCtrl';
+import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 
 @Component({
   selector: 'page-home',
@@ -17,18 +17,22 @@ export class HomePage {
   pairedDeviceId: number = 0;
   pairedList: PairedList;
 
-  constructor(public navCtrl: NavController, public msg: MessageController, public bluetoothSerial: BluetoothSerial,
-              private openNativeSettings: OpenNativeSettings, private bluetoothProvider: BluetoothProvider) {
-                this.bluetoothProvider.checkBluetoothEnabled();
-                this.command = '';
-               }
+  constructor(
+    public navCtrl: NavController, 
+    public msg: MessageController, 
+    public bluetoothSerial: BluetoothSerial,
+    private openNativeSettings: OpenNativeSettings, 
+    private bluetoothProvider: BluetoothProvider) 
+    {
+      this.bluetoothProvider.checkBluetoothEnabled();
+    }
     
   
-                listPairedDevices(){
-                  this.bluetoothProvider.listPairedDevices();
-                }
+  listPairedDevices(){
+    this.bluetoothProvider.listPairedDevices();
+  }
 
-                selectDevice(){
+  selectDevice(){
                   this.bluetoothProvider.selectDevice();
                 }
                 /*

@@ -9,16 +9,19 @@ import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { MessageController } from '../utils/messageCtrl';
+import { MessageController } from '../utils/messageCtrl/messageCtrl';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
+import { TestingPage } from '../pages/testing/testing';
+import { TableProvider } from '../providers/table/table';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SplashPage,
-    ConnectPage
+    ConnectPage,
+    TestingPage,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
     MyApp,
     HomePage,
     SplashPage,
-    ConnectPage
+    ConnectPage, 
+    TestingPage
   ],
   providers: [
     StatusBar,
@@ -38,7 +42,8 @@ import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
     MessageController,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OpenNativeSettings,
-    BluetoothProvider
+    BluetoothProvider,
+    TableProvider
   ]
   
 })
