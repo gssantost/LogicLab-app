@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import CHIPDATA from '../../helpers/chip-data';
+import { Table } from './tableData';
+import { Chip } from '../../utils/interfaces/chip';
 
 /*
   Generated class for the TableProvider provider.
@@ -10,12 +11,19 @@ import CHIPDATA from '../../helpers/chip-data';
 @Injectable()
 export class TableProvider {
 
-  /* constructor(public http: HttpClient) {
-    console.log('Hello TableProvider Provider');
-  }*/
+  getChip(id: string): Promise<Chip> {
+    return new Promise((resolve, reject) => {
+      let data = Table.find((c) => c.id === id.toUpperCase())
 
-  getChip(id: string) {
-    return CHIPDATA.find((c) => c.id === id);
+      setTimeout(() => {
+        if (data != null) {
+          resolve(data)
+        } else {
+          reject(data)
+        }
+      }, 2000);
+      
+    });
   }
 
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 import { PairedList } from '../../utils/interfaces/pairedList';
+import { Chip } from '../../utils/interfaces/chip';
 
 @Injectable()
 export class BluetoothProvider {
@@ -17,21 +18,40 @@ export class BluetoothProvider {
     //this.checkBluetoothEnabled();
   }
 
-  checkBluetoothEnabled() {
-    this.bluetoothSerial.isEnabled()
+  async checkBluetoothEnabled() {
+    try {
+      let success = this.bluetoothSerial.isEnabled();
+      if (success) {
+        try {
+          this.pairedList = await this.bluetoothSerial.list();
+        } catch (e) {
+          console.log(e);
+          this.msg.show("Error", "Please enable Bluetooth.")
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      this.msg.show("Error", "Please enable Bluetooth.")
+    }
+
+    /*this.bluetoothSerial.isEnabled()
       .then(success => {
         console.log(success)
-        this.listPairedDevices()
+        try {
+          this.pairedList = await this.listPairedDevices();
+        } catch (e) {
+
+        }
       })
       .catch(error => {
         console.log(error)
         this.msg.show("Error", "Please enable Bluetooth.")
-      });
+      });*/
   }
   
-  listPairedDevices() {
-    this.bluetoothSerial.list()
-      .then((success) => {
+  async listPairedDevices() {
+    return await this.bluetoothSerial.list();
+      /*.then((success) => {
         console.log(JSON.stringify(success))
         this.pairedList = success
         // this.listToggle = true
@@ -39,7 +59,7 @@ export class BluetoothProvider {
       .catch(error => {
         console.log(error)
         this.msg.show("Error", "Please enable Bluetooth.")
-      })
+      })*/
   }
 
   getPairedDevices(): PairedList {
@@ -52,7 +72,7 @@ export class BluetoothProvider {
         this.msg.show("Error", "Select paired device to connect.")
         return;
       }
-      const { address, name } = connectedDevice;
+      const { address } = connectedDevice;
       this.connect(address)
     }
   }
@@ -91,18 +111,8 @@ export class BluetoothProvider {
         this.msg.show("Error", error)
       })
   }
-  send() {
-    /*
-    let data = [{
-      "74LS04": {
-        pinNo: 4,
-        config: "OIOIOIOIOIOIOO"
-        //test: [[0, 1], [0, 1], [0, 1], [0, 1], [0, 1], [0, 1]],
-        //result: [[1, 0], [1, 0], [1, 0], [1, 0], [1, 0], [1, 0]],
-        //description: "6 Compuertas Inversoras NOT"
-      }
-    },
-    ];*/
+  
+  /*send() {
     
     //this.command = JSON.stringify(data[0]["74LS04"]);
    
@@ -119,5 +129,24 @@ export class BluetoothProvider {
       })
 
     this.bluetoothSerial.clear();
+  }*/
+
+  send(data: Chip): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { id, result, info, ...rest } = data;
+        let message = {
+          ...rest
+        };
+
+        let response = await this.bluetoothSerial.write(JSON.stringify(message) + '\n');
+
+        resolve(response);
+        
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
+
 }
