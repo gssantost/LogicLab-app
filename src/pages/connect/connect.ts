@@ -4,6 +4,7 @@ import { PairedList } from '../../utils/interfaces/pairedList';
 import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { TestingPage } from '../testing/testing';
+import { ReceiverProvider } from '../../providers/receiver/receiver';
 
 /**
  * Generated class for the ConnectPage page.
@@ -27,6 +28,7 @@ export class ConnectPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private bluetoothSerial: BluetoothSerial,
+    private receiverService: ReceiverProvider,
     private msg: MessageController) 
     {
       this.checkBluetoothEnabled();
@@ -38,6 +40,8 @@ export class ConnectPage {
       .then(success => {
         console.log(success)
         this.listPairedDevices()
+        //this.listUnpairedDevices()
+        //this.listAll()
       })
       .catch(error => {
         console.log(error)
@@ -55,6 +59,29 @@ export class ConnectPage {
       .catch(error => {
         console.log(error)
         this.msg.show("Error", "Please enable Bluetooth.")
+      })
+  }
+
+  listUnpairedDevices() {
+    this.bluetoothSerial.discoverUnpaired()
+      .then(success => {
+        console.log(JSON.stringify(success))
+        this.pairedList = success
+        this.listToggle = true
+      })
+      .catch(error => {
+        console.log(error)
+        this.msg.show("Error", "Please enable Bluetooth.")
+      })
+  }
+
+  listAll() {
+    Promise.all([this.bluetoothSerial.discoverUnpaired(), this.bluetoothSerial.list()])
+      .then((devices) => {
+        console.log(JSON.stringify(devices))
+      })
+      .catch(error => {
+        console.log(error)
       })
   }
 
@@ -76,7 +103,7 @@ export class ConnectPage {
       .connect(address)
       .subscribe(success => {
         console.log(success)
-        this.deviceConnected()
+        this.suscribeBluetoothEvent()
         this.msg.show("", "Successfully connected")
         callback();
       }, error => {
@@ -85,11 +112,12 @@ export class ConnectPage {
       })
   }
   
-  deviceConnected() {
+  suscribeBluetoothEvent() {
     this.bluetoothSerial
       .subscribe("\n")
       .subscribe(success => {
-        this.msg.show("Data", success)
+        this.receiverService.setIncomingData(success)
+        this.msg.show("Data", this.receiverService.get())
       }, error => {
         this.msg.show("Error", error)
       })

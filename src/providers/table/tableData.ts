@@ -1,6 +1,6 @@
 import { Chip } from '../../utils/interfaces/chip';
 
-export const Table: Chip[] = [
+export var Table: Chip[] = [
   {
     id: '74LS04',
     pinNo: 14,
@@ -15,7 +15,7 @@ export const Table: Chip[] = [
     config: 'OOIOOIGIOOIOOV',
     test: [[0,0], [0,1], [1,0], [1,1]],
     result: [[0,0,0,1]], 
-    info: 'AND - 4 Compuertas'
+    info: 'AND - 4 Compuertas de 2 Entradas'
   },
   {
     id: '74LS02',
@@ -26,7 +26,7 @@ export const Table: Chip[] = [
     info: 'OR - 4 Compuertas de 2 Entradas'
   },
   {
-    id: '74LS00',
+    id: '74LS32',
     pinNo: 14,
     config: 'OOIOOIGIOOIOOV',
     test: [[0, 0], [0, 1], [1, 0], [1, 1]],
@@ -34,14 +34,3 @@ export const Table: Chip[] = [
     info: 'OR - 4 Compuertas de 2 Entradas'
   },
 ];
-
-/*
-  {
-    id: '74LS04',
-    pinNo: 14,
-    config: 'OIOIOIGIOIOIOV',
-    test: [ [0, 1], [0, 1], [0, 1], [0, 1], [0, 1], [0, 1] ],
-    result: [ [1, 0], [1, 0], [1, 0], [1, 0], [1, 0], [1, 0] ],
-    info: '6 Compuertas Inversoras NOT'
-  }
-*/

@@ -6,19 +6,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { MessageController } from '../utils/messageCtrl/messageCtrl';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
-import { BluetoothProvider } from '../providers/bluetooth/bluetooth';
 import { TestingPage } from '../pages/testing/testing';
 import { TableProvider } from '../providers/table/table';
+import { ReceiverProvider } from '../providers/receiver/receiver';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     SplashPage,
     ConnectPage,
     TestingPage,
@@ -30,7 +29,6 @@ import { TableProvider } from '../providers/table/table';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     SplashPage,
     ConnectPage, 
     TestingPage
@@ -42,8 +40,9 @@ import { TableProvider } from '../providers/table/table';
     MessageController,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OpenNativeSettings,
-    BluetoothProvider,
-    TableProvider
+    TableProvider,
+    NativeStorage,
+    ReceiverProvider,
   ]
   
 })

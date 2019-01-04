@@ -17,6 +17,25 @@
 
   Ingrese número de chip:<ion-input [(ngModel)]="userInput"></ion-input>
 
-  <button ion-button color="secondary" outline round class="boton" (click)="check(userInput)">TEST</button>
+  <br><br>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <button ion-button color="secondary" outline round class="boton" (click)="check(userInput)">TEST</button>
+          </ion-item>
+          <ion-item>
+            <button ion-button color="secondary" outline round class="boton" (click)="showAllChips()">SHOW ALL CHIP NAMES</button>
+          </ion-item>
+          <ion-item>
+            <button ion-button color="secondary" outline round class="boton" (click)="add(userInput)">ADD</button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 
 </ion-content>

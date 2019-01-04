@@ -3,8 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TableProvider } from '../../providers/table/table';
 import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
-import { Observable } from 'rxjs';
-import { ISubscription } from 'rxjs/Subscription';
+import { ResultPage } from '../result/result';
 
 /**
  * Generated class for the TestingPage page.
@@ -21,8 +20,6 @@ import { ISubscription } from 'rxjs/Subscription';
 export class TestingPage {
 
   public userInput: string;
-  private observable: Observable<any>;
-  private suscription: ISubscription;
 
   constructor(
     public navCtrl: NavController, 
@@ -30,75 +27,89 @@ export class TestingPage {
     public navParams: NavParams,
     private tableService: TableProvider, 
     private bluetoothSerial: BluetoothSerial) {
-
+      this.userInput = '';
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestingPage');
+    this.tableService.isEmpty()
+      .then(flag => {
+        if (!flag) {
+          this.tableService.setTable()
+            .then((loaded) => {
+              if (loaded) {
+                console.log('Chip table loaded');
+              } else {
+                console.log('Chip table not loaded');
+              }
+            })
+        }
+      })
   }
-
 
   check(id: string) {
     this.uiCtrl.load();
 
-    this.tableService.getChip(id.trim())
-      .then((data) => {
-        console.log("IC seleccionado", JSON.stringify(data))
+    if (id.trim() == '') {
+      this.uiCtrl.dismiss();
+      this.uiCtrl.show('', 'Introduzca un serial TTL válido');
+    } else {
+      this.tableService.getChip(id.trim())
+        .then((data) => {
+          console.log("IC seleccionado", JSON.stringify(data))
 
-        const { id, result, info, ...rest } = data;
-        let obj = {
-          ...rest
-        };
+          const { id, result, info, ...rest } = data;
+          let obj = {
+            ...rest
+          };
 
-        let message = JSON.stringify(obj) + '\n';
+          let message = JSON.stringify(obj) + '\n';
 
-        /*this.suscription = this.createSocket(message)
-          .suscribe((data) => {
-            console.log(data);
-            this.uiCtrl.dismiss();
-          }
-        );*/  
-        
-        this.bluetoothSerial.write(message)
-        .then((success) => {
-              console.log(success); 
+          this.bluetoothSerial.write(message)
+            .then((success) => {
+              console.log(success);
               this.uiCtrl.dismiss();
-        }).catch((failure) => {
-          console.log(failure)
-          this.uiCtrl.show("Error", failure);
-          this.uiCtrl.dismiss();
-        });
-
-      }).catch((e) => {
-        console.log(e)
-        this.uiCtrl.show("Error", "IC not found.")
-        this.uiCtrl.dismiss();
-      });
-  }
-
-  /*createSocket(message: string) {
-    return Observable.create((observer) => {
-      this.bluetoothSerial.isConnected()
-        .then((success) => {
-
-          console.log('Connected!', success);
-
-          this.observable = Observable.from(this.bluetoothSerial.write(message))
-            .flatMap(() => this.bluetoothSerial.subscribeRawData())
-            .flatMap(() => this.bluetoothSerial.readUntil('\n'));
-
-            this.observable.subscribe(data => {
-              observer.next(data);
+              this.navCtrl.push(ResultPage);
+            }).catch((failure) => {
+              console.log(failure)
+              this.uiCtrl.show("Error", failure);
+              this.uiCtrl.dismiss();
             });
 
-        }, (failure) => {
+        }).catch((e) => {
+          console.log(e)
+          this.uiCtrl.show("Error", "IC not found.")
+          this.uiCtrl.dismiss();
+        });
+    }
+  }
 
-          console.log('Not connected', failure);
-          observer.next('Not connected');
-          observer.complete();
-        
-        })
+  showAllChips() {
+    this.tableService.getTable().then(t => {
+      console.log(JSON.stringify(t));
+    })
+  }
+
+  /**
+   * Método de prueba para adicionar un chip a la Tabla del NativeStorage
+   */
+  add() {
+    let chip = {
+      id: '74LS32',
+      pinNo: 14,
+      config: 'OOIOOIGIOOIOOV',
+      test: [[0, 0], [0, 1], [1, 0], [1, 1]],
+      result: [[0, 1, 1, 1]],
+      info: 'OR - 4 Compuertas de 2 Entradas'
+    }
+    this.tableService.addChip(chip).then(done => {
+      if (done) {
+        console.log('New chip added!');
+        this.showAllChips();
+      } else {
+        console.log('Error al añadir el chip!');
+      }
     });
-  }*/
+  }
 
 }
