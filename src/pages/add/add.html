@@ -1,16 +1,11 @@
-<!--
-  Generated template for the TestingPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 
 <ion-content padding>
   <ion-item center class="linea">
     
     <h1 class="logo">
 
-      <span>TESTING</span>
+      <span>&nbsp;ADDING</span>
       <div class="container">
           <div class="baton-0"><div class="metronome"><div class="baton"></div></div></div>
           <div class="baton-1"><div class="metronome"><div class="baton"></div></div></div>
@@ -52,34 +47,47 @@
     </h1>
     </ion-item>
     <br>
-    <div class="next">
-      <br>
-      <br>
-    <br>
-    
-    
-  <label> &nbsp;&nbsp;
-      Enter chip number:</label><ion-input [(ngModel)]="userInput" #chip></ion-input>
 
-  <br><br><br>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-list >
-          <ion-item style="background-color:#222" no-lines>
-            <button ion-button color="secondary" outline round class="boton" (click)="check(userInput)" >TEST</button>
-          </ion-item>
-          <ion-item style="background-color:#222" no-lines>
-            <button ion-button color="secondary" outline round class="boton1" (click)="showAllChips()">SHOW ALL</button>
-          </ion-item>
-          <ion-item style="background-color:#222" no-lines>
-            <button ion-button color="secondary" outline round class="boton" (click)="addChip(chip.value)">ADD</button>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  </div>
-
-</ion-content>
+    <div >
+        <form (ngSubmit)="logForm()" class="formulario">
+            <ion-item class="itemform">
+                <ion-label>Chip ID</ion-label>
+              <ion-input type="text" [(ngModel)]="newChip.id" [ngModelOptions]="{standalone: true}"></ion-input>
+            </ion-item>
+            <ion-item class="itemform"> 
+              <ion-label>Number of Pins</ion-label>
+              <ion-input [(ngModel)]="newChip.pinNo" name="pinNo" type="number" [ngModelOptions]="{standalone: true}"></ion-input>
+            </ion-item>
+            <ion-item class="itemform">
+                <ion-label>Configuration</ion-label>
+                <ion-select [(ngModel)]="newChip.config" [ngModelOptions]="{standalone: true}">
+                  <ion-option value="OIOIOIGIOIOIOV">OIOIOIGIOIOIOV</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item class="itemform">
+                  <ion-label>Test Values</ion-label>
+                  <ion-select [(ngModel)]="newChip.test" [ngModelOptions]="{standalone: true}">
+                      <ion-option value="[[0], [1]]">[[0], [1]]</ion-option>
+                      <ion-option value="[[0,0], [0,1], [1,0], [1,1]]">[[0,0], [0,1], [1,0], [1,1]]</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item class="itemform">
+                    <ion-label>Result Values</ion-label>
+                    <ion-select [(ngModel)]="newChip.result" [ngModelOptions]="{standalone: true}">
+                        <ion-option value="[[0], [1]]">[[0], [1]]</ion-option>
+                        <ion-option value="[[0,0,0,1]]">[[0,0,0,1]]</ion-option>
+                        <ion-option value="[[0, 1, 1, 1]]">[[0, 1, 1, 1]]</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item class="itemform">
+                      <ion-label>Additional Info</ion-label>
+                      <ion-select [(ngModel)]="newChip.info" [ngModelOptions]="{standalone: true}">
+                          <ion-option value="NOT - 6 Compuertas Inversoras">NOT - 6 Compuertas Inversoras</ion-option>
+                          <ion-option value="AND - 4 Compuertas de 2 Entradas">AND - 4 Compuertas de 2 Entradas</ion-option>
+                          <ion-option value="OR - 4 Compuertas de 2 Entradas">OR - 4 Compuertas de 2 Entradas</ion-option>
+                      </ion-select>
+                    </ion-item>
+            <button ion-button type="submit" color="secondary" class="botonform" round outline>Add Chip</button>
+          </form>
+      </div>
+      </ion-content>

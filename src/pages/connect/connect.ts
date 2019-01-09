@@ -93,7 +93,7 @@ export class ConnectPage {
       }
       const { address } = connectedDevice;
       this.connect(address, () => {
-        this.navCtrl.setRoot(TestingPage);
+        this.navCtrl.push(TestingPage);
       })
     }
   }

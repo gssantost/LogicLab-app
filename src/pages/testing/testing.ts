@@ -1,3 +1,5 @@
+import { AddPage } from './../add/add';
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TableProvider } from '../../providers/table/table';
@@ -92,7 +94,14 @@ export class TestingPage {
 
   /**
    * Método de prueba para adicionar un chip a la Tabla del NativeStorage
+   * 
    */
+
+  addChip(chip){
+    this.navCtrl.push(AddPage, {id:chip})
+    console.log(chip);
+  }
+
   add() {
     let chip = {
       id: '74LS32',
