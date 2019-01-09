@@ -1,31 +1,46 @@
 page-connect {
 
+    
     .content-md {
         color: #222;
-        background-color: #222;
+       background-color: #222;
     }
 
     * {
         box-sizing: border-box;
     }
     
+    ion-list{
+        background-color: #050505;
+        color: white;
+    }
+    .polo{
+        background-color :#222;
+        color: white;
+      
+       
+    }
     body {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background-color: #050505;
+        height: 50vh;
+       background-color: #050505;
         overflow: hidden;
     }
 
     .linea{
-        border: solid;
-        background-color: #222;
-        height: 12vh;
-        border-top-color:  #32db64;
-        border-bottom-color:#32db64;
-        border-left-color: #222;
-        border-right-color: #222;
+        margin-top: 5%;
+       border: solid;
+       background-color: #222;
+       height: 20vh;
+       border-top-color:  #32db64;
+       border-bottom-color:#32db64;
+       border-left-color: #32db64;
+       border-right-color: #32db64;
+       outline: 1px solid  #f5a51c;
+       border-radius: 20px;
+       outline: inherit
     }
 
     .boton{
@@ -34,12 +49,15 @@ page-connect {
         padding-inline-start: 30px;
         position: absolute;
         bottom: 0%;
-        left: 40%;
-        margin-bottom: 8%;      
+        left: 35%;
+        margin-bottom: 8%;   
+        width: 90px !important;
+        height: 40px !important;
+       
     }
 
     .next{
-        height: 80vh;
+        height: 70vh;
         color: #16a085;
         border: solid;
        // top: 30px;
@@ -159,4 +177,3 @@ page-connect {
     
     
 }
-

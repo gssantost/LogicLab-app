@@ -1,9 +1,13 @@
+import { ResultPage } from './../pages/result/result';
+
+import { TestingPage } from './../pages/testing/testing';
 import { SplashPage } from './../pages/splash/splash';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ModalController } from 'ionic-angular';
+
 @Component({
   templateUrl: 'app.html'
 })
