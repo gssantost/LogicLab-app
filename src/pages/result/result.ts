@@ -37,6 +37,7 @@ export class ResultPage {
   }
 
   ionViewDidEnter() {
+    console.log('ionViewDidEnter ResultPage');
     this.currentChip = this.tableService.getCurrentChip();
     this.compareResults(this.currentChip, this.receiverService.get());
   }
@@ -49,9 +50,8 @@ export class ResultPage {
    * @param testChip Objeto de Repuesta Serial obtenida por el módulo de pruebas. Contiene los resultados de la prueba
    */
   compareResults(currentChip: Chip, test: SerialResponse) {
-    if (test.status != 1) {
-      this.uiCtrl.show("", test.message);
-    } else {
+    if (test.status == 1) {
+      console.log("Aqui");
       currentChip.result.forEach((value, i) => {
         if (test.result[i] === value) {
           console.log("Valor obtenido: " + test.result[i], " Valor esperado: " + value);
@@ -61,7 +61,9 @@ export class ResultPage {
           this.gates.push(false);
         }
       })
-      this.uiCtrl.show("", test.message)
+    } else {
+      console.log("Else");
+      this.uiCtrl.show("", test.message);
     } 
   }
 

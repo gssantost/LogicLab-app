@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TableProvider } from '../../providers/table/table';
 import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
-import { ResultPage } from '../result/result';
 
 /**
  * Generated class for the TestingPage page.
@@ -69,7 +68,7 @@ export class TestingPage {
             .then((success) => {
               console.log(success);
               this.uiCtrl.dismiss();
-              this.navCtrl.push(ResultPage);
+              //this.navCtrl.push(ResultPage);
             }).catch((failure) => {
               console.log(failure)
               this.uiCtrl.show("Error", failure);

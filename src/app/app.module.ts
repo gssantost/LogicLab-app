@@ -14,6 +14,7 @@ import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { TestingPage } from '../pages/testing/testing';
 import { TableProvider } from '../providers/table/table';
 import { ReceiverProvider } from '../providers/receiver/receiver';
+import { ResultPage } from '../pages/result/result';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReceiverProvider } from '../providers/receiver/receiver';
     SplashPage,
     ConnectPage,
     TestingPage,
+    ResultPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { ReceiverProvider } from '../providers/receiver/receiver';
     MyApp,
     SplashPage,
     ConnectPage, 
-    TestingPage
+    TestingPage,
+    ResultPage
   ],
   providers: [
     StatusBar,

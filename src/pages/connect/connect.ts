@@ -5,6 +5,7 @@ import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { TestingPage } from '../testing/testing';
 import { ReceiverProvider } from '../../providers/receiver/receiver';
+import { ResultPage } from '../result/result';
 
 /**
  * Generated class for the ConnectPage page.
@@ -117,7 +118,8 @@ export class ConnectPage {
       .subscribe("\n")
       .subscribe(success => {
         this.receiverService.setIncomingData(success)
-        this.msg.show("Data", this.receiverService.get())
+        // this.msg.show("Data", this.receiverService.get())
+        this.navCtrl.push(ResultPage)
       }, error => {
         this.msg.show("Error", error)
       })
