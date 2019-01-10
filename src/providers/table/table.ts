@@ -97,4 +97,8 @@ export class TableProvider {
     return this.currentChip;
   }
 
+  clear() {
+    this.currentChip = null;
+  }
+
 }

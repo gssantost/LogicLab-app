@@ -20,8 +20,9 @@ import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 })
 export class ResultPage {
 
-  private currentChip: Chip;
-  private gates: any = [];
+  currentChip: Chip;
+  gates: any = [];
+  outputPositions: any = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -34,8 +35,13 @@ export class ResultPage {
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter ResultPage');
-    this.currentChip = this.tableService.getCurrentChip();
+    this.checkOuputPositions();
     this.compareResults(this.currentChip, this.receiverService.getData());
+  }
+
+  ionViewDidLeave() {
+    this.receiverService.clear();
+    this.tableService.clear();
   }
 
   /**
@@ -62,12 +68,20 @@ export class ResultPage {
       console.log(this.gates)
       
       this.gates.forEach((isGoodOrBad, i) => {
-        console.log("Salida ", i, " funciona: ", isGoodOrBad);
+        console.log("Salida ", this.outputPositions[i], " funciona: ", isGoodOrBad);
       })
 
     } else {
       this.messageCtrl.show("", test.message);
     } 
+  }
+
+  checkOuputPositions() {
+    let str = this.currentChip.config;
+    for (let i = 0; i < this.currentChip.config.length; i++) {
+      if (str[i] === "I") 
+        this.outputPositions.push(i+1);
+    }
   }
 
 }

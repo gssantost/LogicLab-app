@@ -54,16 +54,16 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>
-
+            <ion-col text-center>
+              <img src="../../assets/imgs/ICmini.png">
             </ion-col>
-            <ion-col>
-
-            </ion-col>
-            <ion-col>
-              
+          </ion-row>
+          <ion-row *ngFor="let o of outputPositions; let i=index;" text-center>
+            <ion-col [ngSwitch]="gates[i]" no-margin>
+              <p color="danger" *ngSwitchCase="true">PIN # {{o}} is an OUTPUT and works <span>✔️</span></p>
+              <p color="danger" *ngSwitchCase="false">PIN # {{o}} is an OUTPUT and works <span>❌</span></p>
             </ion-col>
           </ion-row>
         </ion-grid>
-    </div>
-    </ion-content>  
+      </div>
+</ion-content>  

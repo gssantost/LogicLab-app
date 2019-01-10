@@ -25,7 +25,7 @@ export class ConnectPage {
   public listToggle: boolean;
   public deviceList: Array<Device> = [];
   public spinning: boolean = true;
-  public pageState: string;
+  public pageState: string = "SEARCHING";
 
   constructor(
     public navCtrl: NavController, 
@@ -77,13 +77,13 @@ export class ConnectPage {
   selectDevice() {
     let connectedDevice = this.deviceList[this.pairedDeviceId]; 
     if (!connectedDevice.address) {
-      this.msg.show("Error", "Select a device to connect.")
-      return;
+      this.msg.show("Error", "Select a device to connect.") 
+    } else {
+      const { address } = connectedDevice;
+      this.connect(address, () => {
+        this.navCtrl.setRoot(TestingPage);
+      })
     }
-    const { address } = connectedDevice;
-    this.connect(address, () => {
-      this.navCtrl.setRoot(TestingPage);
-    })
   }
 
   connect(address, callback?) {
@@ -106,6 +106,7 @@ export class ConnectPage {
       .subscribe("\n")
       .subscribe(success => {
         this.receiverService.setIncomingData(success)
+        this.msg.dismiss()
         this.navCtrl.push(ResultPage)
       }, error => {
         this.msg.show("Error", error)

@@ -48,10 +48,6 @@ export class AddPage {
       console.log(JSON.stringify(t));
     })
   }
-
-
-  
-
   
   logForm() {
 

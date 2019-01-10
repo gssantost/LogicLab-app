@@ -69,8 +69,6 @@ export class TestingPage {
           this.bluetoothSerial.write(message)
             .then((success) => {
               console.log(success);
-              this.uiCtrl.dismiss();
-              //this.navCtrl.push(ResultPage);
             }).catch((failure) => {
               console.log(failure)
               this.uiCtrl.show("Error", failure);
