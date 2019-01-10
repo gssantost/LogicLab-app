@@ -23,13 +23,12 @@ export class ReceiverProvider {
   setIncomingData(response: string) {
     console.log('Respuesta es: ', response);
     this.dataIn = JSON.parse(response);
-    console.log(this.dataIn);
   }
 
   /**
    * Getter para dataIn
    */
-  get(): SerialResponse {
+  getData(): SerialResponse {
     return this.dataIn;
   }
 

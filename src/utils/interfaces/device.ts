@@ -1,6 +1,6 @@
-export interface PairedList {
+export interface Device {
   id: string,
   address: string,
   name: string,
-  class: Number,
+  class: number,
 }

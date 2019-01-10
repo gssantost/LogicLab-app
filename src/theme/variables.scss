@@ -34,11 +34,11 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary: #32db64,
+  secondary: #32db64,
+  danger: #545554,
+  light: #f4f4f4,
+  dark: #222
 );
 
 
@@ -53,6 +53,15 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+// Refresher styles
+$refresher-height: 90px;
+$refresher-icon-color: #23773c;
+$refresher-icon-font-size: 40px;
+$refresher-text-color: #fff;
+$refresher-border-color: #222;
+
+// Spinner styles
+$spinner-md-crescent-color: #32db64;
 
 
 

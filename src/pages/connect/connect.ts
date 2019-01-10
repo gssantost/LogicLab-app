@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PairedList } from '../../utils/interfaces/pairedList';
+import { Device } from '../../utils/interfaces/device';
 import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { TestingPage } from '../testing/testing';
@@ -23,7 +23,9 @@ export class ConnectPage {
 
   public pairedDeviceId: number = 0;
   public listToggle: boolean;
-  public pairedList: PairedList;
+  public deviceList: Array<Device> = [];
+  public spinning: boolean = true;
+  public pageState: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,71 +34,56 @@ export class ConnectPage {
     private receiverService: ReceiverProvider,
     private msg: MessageController) 
     {
-      this.checkBluetoothEnabled();
-      console.log("Dispositivos disponibles", this.pairedList);
+      this.checkBluetoothEnabled()
+      this.pageState = "SEARCHING";
     }
 
   checkBluetoothEnabled() {
-    this.bluetoothSerial.isEnabled()
+    return this.bluetoothSerial.isEnabled()
       .then(success => {
         console.log(success)
-        this.listPairedDevices()
-        //this.listUnpairedDevices()
-        //this.listAll()
+        this.listAll()
       })
       .catch(error => {
         console.log(error)
-        this.msg.show("Error", "Please enable Bluetooth.")
+        this.pageState = "NOBLUETOOTH";
       });
   }
 
-  listPairedDevices() {
-    this.bluetoothSerial.list()
-      .then((success) => {
-        console.log(JSON.stringify(success))
-        this.pairedList = success
-        this.listToggle = true
-      })
-      .catch(error => {
-        console.log(error)
-        this.msg.show("Error", "Please enable Bluetooth.")
-      })
-  }
-
-  listUnpairedDevices() {
-    this.bluetoothSerial.discoverUnpaired()
-      .then(success => {
-        console.log(JSON.stringify(success))
-        this.pairedList = success
-        this.listToggle = true
-      })
-      .catch(error => {
-        console.log(error)
-        this.msg.show("Error", "Please enable Bluetooth.")
-      })
-  }
-
   listAll() {
+    this.deviceList = [];
+    this.pageState = "SEARCHING";
     Promise.all([this.bluetoothSerial.discoverUnpaired(), this.bluetoothSerial.list()])
-      .then((devices) => {
-        console.log(JSON.stringify(devices))
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      .then(data => {
+        console.log(JSON.stringify(data))
+        data.forEach((devices) => {
+          console.log("Devices", JSON.stringify(devices))
+          if (devices.length !== 0) {
+            devices.forEach((device: Device) => {
+              this.deviceList.push(device);
+            })
+          }
+        })
+        console.log(JSON.stringify(this.deviceList))
+        this.listToggle = true
+        this.pageState = "DONE"
+      }
+    ).catch(error => {
+      console.log(error)
+      this.msg.show("Error", "Please enable Bluetooth.")
+    })      
   }
 
   selectDevice() {
-    let connectedDevice = this.pairedList[this.pairedDeviceId]; {
-      if (!connectedDevice.address) {
-        this.msg.show("Error", "Select paired device to connect.")
-        return;
-      }
-      const { address } = connectedDevice;
-      this.connect(address, () => {
-        this.navCtrl.push(TestingPage);
-      })
+    let connectedDevice = this.deviceList[this.pairedDeviceId]; 
+    if (!connectedDevice.address) {
+      this.msg.show("Error", "Select a device to connect.")
+      return;
     }
+    const { address } = connectedDevice;
+    this.connect(address, () => {
+      this.navCtrl.setRoot(TestingPage);
+    })
   }
 
   connect(address, callback?) {
@@ -109,6 +96,7 @@ export class ConnectPage {
         callback();
       }, error => {
         console.log(error)
+        this.pageState = "NOBLUETOOTH"
         this.msg.show("Error", "An error occured while trying to connect to device")
       })
   }
@@ -118,7 +106,6 @@ export class ConnectPage {
       .subscribe("\n")
       .subscribe(success => {
         this.receiverService.setIncomingData(success)
-        // this.msg.show("Data", this.receiverService.get())
         this.navCtrl.push(ResultPage)
       }, error => {
         this.msg.show("Error", error)
@@ -134,6 +121,14 @@ export class ConnectPage {
       })
       .catch(error => {
         this.msg.show("Error", error)
+      })
+  }
+
+  doRefresh(refresher) {
+    console.log("Begin async operation", refresher);
+    this.checkBluetoothEnabled()
+      .then(() => {
+        refresher.complete()
       })
   }
 

@@ -21,25 +21,21 @@ import { MessageController } from '../../utils/messageCtrl/messageCtrl';
 export class ResultPage {
 
   private currentChip: Chip;
-  private test: SerialResponse;
-  private gates: Array<Boolean>; // Arreglo de banderas true/false para indicar el estado Positivo o Negativo
+  private gates: any = [];
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public uiCtrl: MessageController,
+    public messageCtrl: MessageController,
     private tableService: TableProvider,
     private receiverService: ReceiverProvider) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultPage');
+      this.currentChip = this.tableService.getCurrentChip();
   }
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter ResultPage');
     this.currentChip = this.tableService.getCurrentChip();
-    this.compareResults(this.currentChip, this.receiverService.get());
+    this.compareResults(this.currentChip, this.receiverService.getData());
   }
 
   /**
@@ -51,19 +47,26 @@ export class ResultPage {
    */
   compareResults(currentChip: Chip, test: SerialResponse) {
     if (test.status == 1) {
-      console.log("Aqui");
-      currentChip.result.forEach((value, i) => {
-        if (test.result[i] === value) {
-          console.log("Valor obtenido: " + test.result[i], " Valor esperado: " + value);
-          this.gates.push(true);
-        } else {
-          console.log("Valor obtenido: " + test.result[i], " Valor esperado: " + value);
-          this.gates.push(false);
-        }
+
+      test.result.forEach((testCase, i) => {
+        let expectedResult = currentChip.result[0][i];
+        testCase.forEach((value, k) => {
+          if (value === expectedResult) {
+            this.gates[k] = true;
+          } else {
+            this.gates[k] = false;
+          }
+        })
       })
+
+      console.log(this.gates)
+      
+      this.gates.forEach((isGoodOrBad, i) => {
+        console.log("Salida ", i, " funciona: ", isGoodOrBad);
+      })
+
     } else {
-      console.log("Else");
-      this.uiCtrl.show("", test.message);
+      this.messageCtrl.show("", test.message);
     } 
   }
 
