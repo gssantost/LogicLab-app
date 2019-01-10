@@ -70,14 +70,14 @@ export class ConnectPage {
       }
       ).catch(error => {
         console.log(error)
-        this.msg.show("Error", "Please enable Bluetooth.")
+        this.msg.toast("Error, Please enable Bluetooth.")
       })      
     }
     
     selectDevice() {
       let connectedDevice = this.deviceList[this.pairedDeviceId]; 
       if (!connectedDevice.address) {
-        this.msg.show("Error", "Select a device to connect.") 
+        this.msg.toast("Error, Select a device to connect.") 
       } else {
         const { address } = connectedDevice;
         this.connect(address, () => {
@@ -92,12 +92,12 @@ export class ConnectPage {
       .subscribe(success => {
         console.log(success)
         this.suscribeBluetoothEvent()
-        this.msg.show("", "Successfully connected")
+        this.msg.toast("Successfully connected")
         callback();
       }, error => {
         console.log(error)
         this.pageState = "NOBLUETOOTH"
-        this.msg.show("Error", "An error occured while trying to connect to device")
+        this.msg.toast("Error, An error occured while trying to connect to device")
       })
     }
     
@@ -109,7 +109,7 @@ export class ConnectPage {
         this.msg.dismiss()
         this.navCtrl.push(ResultPage)
       }, error => {
-        this.msg.show("Error", error)
+        this.msg.toast("Error")
       })
     }
     
@@ -118,10 +118,10 @@ export class ConnectPage {
       .disconnect()
       .then(success => {
         console.log(success)
-        this.msg.show("", "Device disconnected.")
+        this.msg.toast("Device disconnected.")
       })
       .catch(error => {
-        this.msg.show("Error", error)
+        this.msg.toast("Error")
       })
     }
     
