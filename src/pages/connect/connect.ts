@@ -8,11 +8,11 @@ import { ReceiverProvider } from '../../providers/receiver/receiver';
 import { ResultPage } from '../result/result';
 
 /**
- * Generated class for the ConnectPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+* Generated class for the ConnectPage page.
+*
+* See https://ionicframework.com/docs/components/#navigation for more info on
+* Ionic pages and navigation.
+*/
 
 @IonicPage()
 @Component({
@@ -20,13 +20,13 @@ import { ResultPage } from '../result/result';
   templateUrl: 'connect.html',
 })
 export class ConnectPage {
-
+  
   public pairedDeviceId: number = 0;
   public listToggle: boolean;
   public deviceList: Array<Device> = [];
   public spinning: boolean = true;
   public pageState: string = "SEARCHING";
-
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -37,9 +37,9 @@ export class ConnectPage {
       this.checkBluetoothEnabled()
       this.pageState = "SEARCHING";
     }
-
-  checkBluetoothEnabled() {
-    return this.bluetoothSerial.isEnabled()
+    
+    checkBluetoothEnabled() {
+      return this.bluetoothSerial.isEnabled()
       .then(success => {
         console.log(success)
         this.listAll()
@@ -48,12 +48,12 @@ export class ConnectPage {
         console.log(error)
         this.pageState = "NOBLUETOOTH";
       });
-  }
-
-  listAll() {
-    this.deviceList = [];
-    this.pageState = "SEARCHING";
-    Promise.all([this.bluetoothSerial.discoverUnpaired(), this.bluetoothSerial.list()])
+    }
+    
+    listAll() {
+      this.deviceList = [];
+      this.pageState = "SEARCHING";
+      Promise.all([this.bluetoothSerial.discoverUnpaired(), this.bluetoothSerial.list()])
       .then(data => {
         console.log(JSON.stringify(data))
         data.forEach((devices) => {
@@ -68,26 +68,26 @@ export class ConnectPage {
         this.listToggle = true
         this.pageState = "DONE"
       }
-    ).catch(error => {
-      console.log(error)
-      this.msg.show("Error", "Please enable Bluetooth.")
-    })      
-  }
-
-  selectDevice() {
-    let connectedDevice = this.deviceList[this.pairedDeviceId]; 
-    if (!connectedDevice.address) {
-      this.msg.show("Error", "Select a device to connect.") 
-    } else {
-      const { address } = connectedDevice;
-      this.connect(address, () => {
-        this.navCtrl.setRoot(TestingPage);
-      })
+      ).catch(error => {
+        console.log(error)
+        this.msg.show("Error", "Please enable Bluetooth.")
+      })      
     }
-  }
-
-  connect(address, callback?) {
-    this.bluetoothSerial
+    
+    selectDevice() {
+      let connectedDevice = this.deviceList[this.pairedDeviceId]; 
+      if (!connectedDevice.address) {
+        this.msg.show("Error", "Select a device to connect.") 
+      } else {
+        const { address } = connectedDevice;
+        this.connect(address, () => {
+          this.navCtrl.setRoot(TestingPage);
+        })
+      }
+    }
+    
+    connect(address, callback?) {
+      this.bluetoothSerial
       .connect(address)
       .subscribe(success => {
         console.log(success)
@@ -99,10 +99,10 @@ export class ConnectPage {
         this.pageState = "NOBLUETOOTH"
         this.msg.show("Error", "An error occured while trying to connect to device")
       })
-  }
-  
-  suscribeBluetoothEvent() {
-    this.bluetoothSerial
+    }
+    
+    suscribeBluetoothEvent() {
+      this.bluetoothSerial
       .subscribe("\n")
       .subscribe(success => {
         this.receiverService.setIncomingData(success)
@@ -111,10 +111,10 @@ export class ConnectPage {
       }, error => {
         this.msg.show("Error", error)
       })
-  }
-
-  deviceDisconnected() {
-    this.bluetoothSerial
+    }
+    
+    deviceDisconnected() {
+      this.bluetoothSerial
       .disconnect()
       .then(success => {
         console.log(success)
@@ -123,14 +123,14 @@ export class ConnectPage {
       .catch(error => {
         this.msg.show("Error", error)
       })
-  }
-
-  doRefresh(refresher) {
-    console.log("Begin async operation", refresher);
-    this.checkBluetoothEnabled()
+    }
+    
+    doRefresh(refresher) {
+      console.log("Begin async operation", refresher);
+      this.checkBluetoothEnabled()
       .then(() => {
         refresher.complete()
       })
+    }
+    
   }
-
-}

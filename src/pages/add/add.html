@@ -4,90 +4,90 @@
   <ion-item center class="linea">
     
     <h1 class="logo">
-
+      
       <span>&nbsp;ADDING</span>
       <div class="container">
-          <div class="baton-0"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-1"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-2"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-3"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-4"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-5"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-6"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-7"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-8"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-9"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-10"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-11"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-12"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-13"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-14"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-15"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-16"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-17"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-18"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-19"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-20"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-21"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-22"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-23"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-24"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-25"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-26"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-27"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-28"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-29"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-30"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-31"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-32"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-33"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-34"><div class="metronome"><div class="baton"></div></div></div>
-          <div class="baton-35"><div class="metronome"><div class="baton"></div></div></div>
-    </div>
-    </h1>
-    </ion-item>
-    <br>
-
-    <div >
-        <form (ngSubmit)="logForm()" class="formulario">
-            <ion-item class="itemform">
-                <ion-label>Chip ID</ion-label>
-              <ion-input type="text" [(ngModel)]="newChip.id" [ngModelOptions]="{standalone: true}"></ion-input>
-            </ion-item>
-            <ion-item class="itemform"> 
-              <ion-label>Number of Pins</ion-label>
-              <ion-input [(ngModel)]="newChip.pinNo" name="pinNo" type="number" [ngModelOptions]="{standalone: true}"></ion-input>
-            </ion-item>
-            <ion-item class="itemform">
-                <ion-label>Configuration</ion-label>
-                <ion-select [(ngModel)]="newChip.config" [ngModelOptions]="{standalone: true}">
-                  <ion-option value="OIOIOIGIOIOIOV">OIOIOIGIOIOIOV</ion-option>
-                </ion-select>
-              </ion-item>
-              <ion-item class="itemform">
-                  <ion-label>Test Values</ion-label>
-                  <ion-select [(ngModel)]="newChip.test" [ngModelOptions]="{standalone: true}">
-                      <ion-option value="[[0], [1]]">[[0], [1]]</ion-option>
-                      <ion-option value="[[0,0], [0,1], [1,0], [1,1]]">[[0,0], [0,1], [1,0], [1,1]]</ion-option>
-                  </ion-select>
-                </ion-item>
-                <ion-item class="itemform">
-                    <ion-label>Result Values</ion-label>
-                    <ion-select [(ngModel)]="newChip.result" [ngModelOptions]="{standalone: true}">
-                        <ion-option value="[[0], [1]]">[[0], [1]]</ion-option>
-                        <ion-option value="[[0,0,0,1]]">[[0,0,0,1]]</ion-option>
-                        <ion-option value="[[0, 1, 1, 1]]">[[0, 1, 1, 1]]</ion-option>
-                    </ion-select>
-                  </ion-item>
-                  <ion-item class="itemform">
-                      <ion-label>Additional Info</ion-label>
-                      <ion-select [(ngModel)]="newChip.info" [ngModelOptions]="{standalone: true}">
-                          <ion-option value="NOT - 6 Compuertas Inversoras">NOT - 6 Compuertas Inversoras</ion-option>
-                          <ion-option value="AND - 4 Compuertas de 2 Entradas">AND - 4 Compuertas de 2 Entradas</ion-option>
-                          <ion-option value="OR - 4 Compuertas de 2 Entradas">OR - 4 Compuertas de 2 Entradas</ion-option>
-                      </ion-select>
-                    </ion-item>
-            <button ion-button type="submit" color="secondary" class="botonform" round outline>Add Chip</button>
-          </form>
+        <div class="baton-0"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-1"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-2"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-3"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-4"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-5"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-6"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-7"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-8"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-9"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-10"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-11"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-12"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-13"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-14"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-15"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-16"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-17"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-18"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-19"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-20"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-21"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-22"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-23"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-24"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-25"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-26"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-27"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-28"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-29"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-30"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-31"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-32"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-33"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-34"><div class="metronome"><div class="baton"></div></div></div>
+        <div class="baton-35"><div class="metronome"><div class="baton"></div></div></div>
       </div>
-      </ion-content>
+    </h1>
+  </ion-item>
+  <br>
+  
+  <div >
+    <form (ngSubmit)="logForm()" class="formulario">
+      <ion-item class="itemform">
+        <ion-label>Chip ID</ion-label>
+        <ion-input type="text" [(ngModel)]="newChip.id" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-item class="itemform"> 
+        <ion-label>Number of Pins</ion-label>
+        <ion-input [(ngModel)]="newChip.pinNo" name="pinNo" type="number" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-item class="itemform">
+        <ion-label>Configuration</ion-label>
+        <ion-select [(ngModel)]="newChip.config" [ngModelOptions]="{standalone: true}">
+          <ion-option value="OIOIOIGIOIOIOV">OIOIOIGIOIOIOV</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="itemform">
+        <ion-label>Test Values</ion-label>
+        <ion-select [(ngModel)]="newChip.test" [ngModelOptions]="{standalone: true}">
+          <ion-option value="[[0], [1]]">1 INPUT GATE</ion-option>
+          <ion-option value="[[0,0], [0,1], [1,0], [1,1]]">2 INPUT GATES</ion-option>
+          <ion-option value="[[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,0,1], [1,1,0], [1,1,1]]">3 INPUT GATES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="itemform">
+        <ion-label>Result Values</ion-label>
+        <ion-select [(ngModel)]="newChip.result" [ngModelOptions]="{standalone: true}">
+          <ion-option value="[[0],[1]]">NOT - [0, 1]</ion-option>
+          <ion-option value="[[0,0,0,1]]">AND - [0, 0, 0, 1]</ion-option>
+          <ion-option value="[[1,1,1,0]]">NAND - [1, 1, 1, 0]</ion-option>
+          <ion-option value="[[0,1,1,1]]">OR - [0, 1, 1, 1]</ion-option>
+          <ion-option value="[[1,0,0,0]]">NOR - [1, 0, 0, 0]</ion-option>
+          <ion-option value="[[0,1,1,0]]">XOR - [0, 1, 1, 0]</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="itemform">
+        <ion-label>Write additional information for the chip</ion-label>
+        <ion-input [(ngModel)]="newChip.info"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" color="secondary" class="botonform" round outline>Add Chip</button>
+  </form>
+</div>
+</ion-content>
