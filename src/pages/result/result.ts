@@ -35,6 +35,7 @@ export class ResultPage {
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter ResultPage');
+    this.currentChip = this.tableService.getCurrentChip();
     this.checkOuputPositions();
     this.compareResults(this.currentChip, this.receiverService.getData());
   }

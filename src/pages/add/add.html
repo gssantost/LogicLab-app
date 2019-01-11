@@ -61,7 +61,9 @@
       <ion-item class="itemform">
         <ion-label>Configuration</ion-label>
         <ion-select [(ngModel)]="newChip.config" [ngModelOptions]="{standalone: true}">
-          <ion-option value="OIOIOIGIOIOIOV">OIOIOIGIOIOIOV</ion-option>
+          <ion-option value="OIOIOIGIOIOIOV">1 INPUT GATE</ion-option>
+          <ion-option value="OOIOOIGIOOIOOV">2 INPUT GATE</ion-option>
+          <ion-option value="OOOOOIGIOOOIOV">3 INPUT GATE</ion-option>
         </ion-select>
       </ion-item>
       <ion-item class="itemform">
@@ -75,19 +77,21 @@
       <ion-item class="itemform">
         <ion-label>Result Values</ion-label>
         <ion-select [(ngModel)]="newChip.result" [ngModelOptions]="{standalone: true}">
-          <ion-option value="[[0],[1]]">NOT - [0, 1]</ion-option>
-          <ion-option value="[[0,0,0,1]]">AND - [0, 0, 0, 1]</ion-option>
-          <ion-option value="[[1,1,1,0]]">NAND - [1, 1, 1, 0]</ion-option>
-          <ion-option value="[[0,1,1,1]]">OR - [0, 1, 1, 1]</ion-option>
-          <ion-option value="[[1,0,0,0]]">NOR - [1, 0, 0, 0]</ion-option>
-          <ion-option value="[[0,1,1,0]]">XOR - [0, 1, 1, 0]</ion-option>
+          <ion-option value="[[0],[1]]">NOT - 1 Input Gate</ion-option>
+          <ion-option value="[[0,0,0,1]]">AND - 2 Input Gates</ion-option>
+          <ion-option value="[[1,1,1,0]]">NAND - 2 Input Gates</ion-option>
+          <ion-option value="[[0,1,1,1]]">OR - 2 Input Gates</ion-option>
+          <ion-option value="[[1,0,0,0]]">NOR - 2 Input Gates</ion-option>
+          <ion-option value="[[0,1,1,0]]">XOR - 2 Input Gates</ion-option>
+          <ion-option value="[[1,0,0,1]]">XNOR - 2 Input Gates</ion-option>
+          <ion-option value="[[0,1,1,0,1,0,0,1]]">XOR - 3 Input Gates</ion-option>
         </ion-select>
       </ion-item>
       <ion-item class="itemform">
         <ion-label>Write additional information for the chip</ion-label>
         <ion-input [(ngModel)]="newChip.info"></ion-input>
-    </ion-item>
-    <button ion-button type="submit" color="secondary" class="botonform" round outline>Add Chip</button>
-  </form>
-</div>
+      </ion-item>
+      <button ion-button type="submit" color="secondary" class="botonform" round outline>Add Chip</button>
+    </form>
+  </div>
 </ion-content>

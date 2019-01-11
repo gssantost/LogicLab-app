@@ -62,7 +62,7 @@
     
     <ion-col *ngSwitchCase="'NOBLUETOOTH'" text-center>
       <ion-spinner name="crescent" duration="1000"></ion-spinner>
-      <p color="secondary" text-center>Can't found devices.<br> Please check if Bluetooth is on.</p>
+      <p color="secondary" text-center>Can't found devices.<br> Please check if Bluetooth is on or dropdown here.</p>
     </ion-col>
     
     <ion-col *ngSwitchCase="'DONE'" text-center>
@@ -78,6 +78,6 @@
   </ion-row>
   
   <button ion-button color="secondary" outline round class="boton"
-  (click)="selectDevice()">CONNECT</button>
+  (click)="selectDevice()" [disabled]="!listToggle">CONNECT</button>
 </ion-item>
 </ion-content>

@@ -70,14 +70,14 @@ export class ConnectPage {
       }
       ).catch(error => {
         console.log(error)
-        this.msg.toast("Error, Please enable Bluetooth.")
+        this.msg.toast("Please enable Bluetooth.")
       })      
     }
     
     selectDevice() {
       let connectedDevice = this.deviceList[this.pairedDeviceId]; 
       if (!connectedDevice.address) {
-        this.msg.toast("Error, Select a device to connect.") 
+        this.msg.toast("Select a device to connect.") 
       } else {
         const { address } = connectedDevice;
         this.connect(address, () => {
@@ -97,7 +97,7 @@ export class ConnectPage {
       }, error => {
         console.log(error)
         this.pageState = "NOBLUETOOTH"
-        this.msg.toast("Error, An error occured while trying to connect to device")
+        this.msg.toast("An error occurred while trying to connect to the device")
       })
     }
     
